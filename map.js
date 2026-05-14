@@ -214,10 +214,7 @@ map.on('load', async () => {
     map.on('zoom', updatePositions); // Update during zooming
     map.on('resize', updatePositions); // Update on window resize
     map.on('moveend', updatePositions); // Final adjustment after movement ends
-    } catch (error) {
-      console.error('Error loading JSON:', error); // Handle errors
-    }
-
+    
 
     function updateTimeDisplay() {
       timeFilter = Number(timeSlider.value); // Get slider value
@@ -247,12 +244,17 @@ map.on('load', async () => {
       // Update the scatterplot by adjusting the radius of circles
       circles
         .data(filteredStations, (d) => d.short_name) // Ensure D3 tracks elements correctly
-        .join('circle') // Ensure the data is bound correctly ????
+        //.join('circle') // Ensure the data is bound correctly ????
         .attr('r', (d) => radiusScale(d.totalTraffic)) // Update circle sizes
         .style('--departure-ratio', (d) =>
           stationFlow(d.departures / d.totalTraffic),
         );
     }
+    
+    } catch (error) {
+      console.error('Error loading JSON:', error); // Handle errors
+    }
+
   
 });
 
