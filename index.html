@@ -13,12 +13,26 @@
     <script src="map.js" type="module"></script>
   </head>
   <body>
-    <h1>🚴🏼‍♀️ Bikewatching</h1>
+    <header>
+      <h1>🚴🏼‍♀️ Bikewatching</h1>
+      <label>
+        Filter by time:
+        <input id="time-slider" type="range" min="-1" max="1439"> 
+        <!--change 1440 to max="1439" to ensure end at 11:59 PM?????-->
+        <em id = 'any-time'>(any time)</em>
+        <time id = 'selected-time'></time>
+      </label>
+    </header>
     <p>Below is the interactive map of bike traffic in Boston and Cambridge in different time of day.</p>
     <link rel="stylesheet" href="global.css" />
     <link rel="stylesheet" href="map.css" />
     <div id="map">
       <svg></svg>
+    </div>
+    <div class="legend">
+      <div style="--departure-ratio: 100%">More departures</div>
+      <div style="--departure-ratio: 50%">Balanced</div>
+      <div style="--departure-ratio: 0%">More arrivals</div>
     </div>
   </body>
 </html>
